@@ -14,7 +14,12 @@ const MONOLOGUE = [
   "I will be asleep before you reach the door.",
 ].join(" ");
 
+const LIMIT = 600;
+
 function writeEntry(text: string): void {
+  if (text.length < 1 || text.length > LIMIT) {
+    throw new Error(`entry.txt must hold 1 to ${LIMIT} characters, got ${text.length}`);
+  }
   const targets = ["/output/entry.txt", resolve(process.cwd(), "output/entry.txt")];
   for (const target of targets) {
     try {
