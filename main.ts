@@ -30,5 +30,11 @@ function writeEntry(text: string): void {
 }
 
 const text = MONOLOGUE.trim();
+
+// The gate accepts 1 to 600 characters of UTF-8 text that is not only white space.
+if (text.length < 1 || text.length > 600) {
+  throw new Error(`entry.txt must be 1 to 600 characters, this one is ${text.length}`);
+}
+
 writeEntry(text);
 process.stdout.write(text + "\n");
